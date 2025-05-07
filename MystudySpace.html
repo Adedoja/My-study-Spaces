@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MyStudySpace</title>
+  <style>
+    body {
+      background-color: #dda15e;
+    }
+  </style>
+</head>
+<body>
+  <h1>Ready to study? Proceed to fill the form</h1>
+
+  <form id="MyStudySpace">
+    <label for="Begin">Begin:</label>
+    <input type="text" id="Begin" name="Begin" placeholder="10:00AM" required>
+
+    <label for="End">End:</label>
+    <input type="text" id="End" name="End" placeholder="12:00PM" required>
+
+    <label for="Day">Day:</label>
+    <select id="Day" name="Day" required>
+      <option value="M">Monday</option>
+      <option value="T">Tuesday</option>
+      <option value="W">Wednesday</option>
+      <option value="R">Thursday</option>
+      <option value="F">Friday</option>
+    </select>
+
+    <button type="submit">Search</button>
+  </form>
+
+  <div id="results"></div>
+
+  <script>
+    document.getElementById('MyStudySpace').addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const begin = document.getElementById('Begin').value;
+      const end = document.getElementById('End').value;
+      const day = document.getElementById('Day').value;
+
+      const response = await fetch('http://localhost:3000/available-rooms', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ begin, end, day })
+      });
+
+      const data = await response.json();
+    
+      output = `
+  <table border="1" style="border-collapse: collapse; width: 100%; text-align: left;">
+    <thead>
+      <tr>
+        <th>Building</th>
+        <th>Room</th>
+      </tr>
+    </thead>
+    <tbody>
+`;
+
+data.forEach(room => {
+  output += `
+    <tr>
+      <td>${room.building}</td>
+      <td>${room.room}</td>
+    </tr>
+  `;
+});
+
+output += `
+    </tbody>
+  </table>
+`;
+
+      output += '</ul>';
+
+      document.getElementById('results').innerHTML = output;
+    });
+  </script>
+</body>
+</html>
