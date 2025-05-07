@@ -5,7 +5,7 @@ Input a start time, an end time and the day.
 Data is based on the semester's schedule which has been excluded for security purpose. 
 -Areas for improvement: I would like to include a real time map that tracks the user's location and filters the buildings generated based on the proximity
 
-Frontend: HTML, JavaScript
-Backend: Node.js
-Database: MySQL
-Tools: jupyter notebook for data filtering
+* Frontend: HTML, JavaScript
+* Backend: Node.js
+* Database: MySQL
+* Tools: jupyter notebook for data filtering
