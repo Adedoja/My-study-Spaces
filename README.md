@@ -1,4 +1,8 @@
 A web application that allows students to check which classrooms are free at specific times in a given building. This helps students find quiet spaces for self-study without having to walk around checking rooms manually.
+**IMPORTANT**
+The database app.js needs fixing. I have removed my own personal data for security reasons.
+For this update the username and the password on line 12 and 13 
+
 
 -The Process: 
 Input a start time, an end time and the day. 
